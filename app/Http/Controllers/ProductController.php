@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Container\Attributes\Log;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -11,10 +12,10 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return response()->json(Product::all());
+    {   
+        return response()->json(Product::with('category')->get());
     }
-
+    
     /**
      * Store a newly created resource in storage.
      */
@@ -29,7 +30,7 @@ class ProductController extends Controller
      */
     public function show(Product $products)
     {
-        return response()->json(Product::findOrFail($products->id));
+        return response()->json($products->load('category'));
     }
 
     /**
@@ -37,7 +38,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $products)
     {
-        $products = Product::findOrFail($products);
         $products->update($request->all());
         return response()->json($products, 200);
     }
@@ -47,7 +47,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $products)
     {
-        Product::destroy($products);
+        $products->delete();
         return response()->json(['message'=> 'Produto deletado']);
     }
 }
