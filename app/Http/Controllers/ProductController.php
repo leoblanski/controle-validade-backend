@@ -47,7 +47,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $products)
     {
+        $products = Product::first(); /** Identificar por quê nõ está pegando o ID. */
         $products->delete();
-        return response()->json(['message'=> 'Produto deletado']);
+        $products->save();
+        return response()->json(['message'=> $products]);
     }
 }

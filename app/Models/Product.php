@@ -31,12 +31,12 @@ class Product extends Model
 
     public function getManufacturingDateAttribute($value)
     {
-        return date('d-m-Y', strtotime($value));
+        return date('d/m/Y', strtotime($value));
     }
 
     public function getExpirationDateAttribute($value)
     {
-        return date('d-m-Y', strtotime($value));
+        return date('d/m/Y', strtotime($value));
     }
 
     public function category()
