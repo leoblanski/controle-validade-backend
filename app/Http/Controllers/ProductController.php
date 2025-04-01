@@ -21,35 +21,38 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $products = Product::create($request->all());
-        return response()->json($products, 201);
+        $product = Product::create($request->all());
+        return response()->json($product, 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Product $products)
+    public function show(Product $product)
     {
-        return response()->json($products->load('category'));
+        return response()->json($product->load('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $products)
+    public function update(Request $request, Product $product)
     {
-        $products->update($request->all());
-        return response()->json($products, 200);
+        $product->update($request->all());
+        return response()->json($product, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $products)
+    public function destroy(Product $product) // Mudança no parâmetro $products para $product para deletar um único item.
     {
-        $products = Product::first(); /** Identificar por quê nõ está pegando o ID. */
-        $products->delete();
-        $products->save();
-        return response()->json(['message'=> $products]);
+        if(!$product) {  //Mudança para verificação se o produto existe ou não e após isso deletamos ele caso seja encontrado.
+            return response()->json(['error'=> 'Produto não encontrado'],404);
+        }
+
+        $product->delete();
+
+        return response()->json(['success'=> 'Produto excluído com sucesso'],200);
     }
 }
