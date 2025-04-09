@@ -1,5 +1,4 @@
 
-
 services:
   nginx:
     container_name: cv-nginx
@@ -56,7 +55,7 @@ services:
     ports:
       - "8888:80"
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: cv-mysql
       PMA_PORT: 3306
       PMA_USER: cv_user
       PMA_PASSWORD: cv_pw
