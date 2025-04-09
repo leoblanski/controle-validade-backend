@@ -21,11 +21,14 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
+            'status' => 'required|boolean', 
+
         ]);
 
         $category = Category::create([
             'name' => $request->name,
             'description' => $request->description,
+            'status' => $request->status, 
         ]);
 
         return response()->json($category, 201); 
@@ -38,6 +41,7 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
+            'status' => 'required|boolean', 
         ]);
 
         $category = Category::find($id);
@@ -49,6 +53,7 @@ class CategoryController extends Controller
         $category->update([
             'name' => $request->name,
             'description' => $request->description,
+            'status' => $request->status,  
         ]);
         
         return response()->json($category, 200); 
