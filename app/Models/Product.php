@@ -36,4 +36,9 @@ class Product extends Model
     {
         return date('d-m-Y', strtotime($value));
     }
+
+    public function category()
+    {
+        return $this->belongsTo(category::class);
+    }
 }
