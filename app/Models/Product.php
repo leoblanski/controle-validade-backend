@@ -15,11 +15,13 @@ class Product extends Model
         'manufacturing_date',
         'expiration_date',
         'quantity',
+        'category_id',
     ];
 
     protected $casts = [
         'manufacturing_date' => 'date',
         'expiration_date' => 'date',
+        'category_id' => 'integer',
     ];
 
     protected $hidden = [
@@ -29,16 +31,16 @@ class Product extends Model
 
     public function getManufacturingDateAttribute($value)
     {
-        return date('d-m-Y', strtotime($value));
+        return date('Y/m/d', strtotime($value));
     }
 
     public function getExpirationDateAttribute($value)
     {
-        return date('d-m-Y', strtotime($value));
+        return date('Y/m/d', strtotime($value));
     }
 
     public function category()
     {
-        return $this->belongsTo(category::class);
+        return $this->belongsTo(Category::class);
     }
 }

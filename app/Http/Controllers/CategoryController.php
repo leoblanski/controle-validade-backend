@@ -6,11 +6,9 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
-
-
 {
 
-    public function index() 
+    public function index()
     {
 
         return response()->json(Category::all());
@@ -31,8 +29,7 @@ class CategoryController extends Controller
             'status' => $request->status, 
         ]);
 
-        return response()->json($category, 201); 
-
+        return response()->json($category, 201);
     }
 
     public function update(Request $request, $id)
@@ -49,25 +46,23 @@ class CategoryController extends Controller
         if (!$category) {
             return response()->json(['message' => 'Categoria não encontrada'], 404);
         }
-        
+
         $category->update([
             'name' => $request->name,
             'description' => $request->description,
             'status' => $request->status,  
         ]);
-        
-        return response()->json($category, 200); 
+
+        return response()->json($category, 200);
     }
 
     public function show($id)
     {
         $category = Category::find($id);
 
-        if(!$category) {
+        if (!$category) {
             return response()->json(['message' => 'Categoria não encontrada'], 404);
         }
         return response()->json($category, 200);
-        
     }
-
 }
