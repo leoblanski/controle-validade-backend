@@ -8,3 +8,5 @@ Route::get('/teste-produto', function () {
     $produto = Product::with('category')->skip(1)->take(1)->first();
     return response()->json($produto);
 });
+
+

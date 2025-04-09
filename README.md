@@ -15,7 +15,7 @@ docker compose up -d
 
 Acessar o container
 ```sh
-docker compose exec cv-php bash
+docker exec -it cv-php bash
 ```
 
 
@@ -34,16 +34,6 @@ php artisan key:generate
 Acesse o projeto
 [http://localhost](http://localhost)
 
-
-Gerar a JWT key secret
-```sh
-php artisan jwt:secret
-```
-
-Gerar a JWT certs
-```sh
-php artisan jwt:generate-certs
-```
 
 Gerar as migrations e seeders
 
