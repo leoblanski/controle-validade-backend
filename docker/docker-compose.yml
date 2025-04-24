@@ -47,6 +47,21 @@ services:
     networks:
       - laravel
 
+  mysql_test:
+    container_name: rw-mysql-test
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: rw_cv_test
+      MYSQL_ROOT_PASSWORD: rw_pw
+      MYSQL_PASSWORD: rw_pw
+      MYSQL_USER: rw_user
+    ports:
+      - "3307:3306"
+    volumes:
+      - ../.docker/mysql/dbdata_test:/var/lib/mysql
+    networks:
+      - laravel
+
   phpmyadmin:
     container_name: cv-pma
     image: phpmyadmin/phpmyadmin

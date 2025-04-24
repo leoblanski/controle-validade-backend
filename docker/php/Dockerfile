@@ -35,6 +35,9 @@ RUN apk add --no-cache $PHPIZE_DEPS \
     && docker-php-ext-install zip \
     && docker-php-ext-install intl
 
+# Xdebug configuration
+COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
 COPY --from=composer:2.5.4 /usr/bin/composer /usr/local/bin/composer
 
 # Create a new user called appuser

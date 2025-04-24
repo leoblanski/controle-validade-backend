@@ -9,4 +9,8 @@ Route::get('/teste-produto', function () {
     return response()->json($produto);
 });
 
+Route::get('/' , function () {
+    return view('welcome');
+});
+
 
