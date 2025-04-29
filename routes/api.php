@@ -14,10 +14,10 @@ Route::apiResource('products', ProductController::class);
 
 Route::get('products', [ProductController::class, 'index']);
 
-Route::get('categories', [CategoryController::Class, 'index']);
+Route::get('categories', [CategoryController::class, 'index']);
 
 Route::post('categories', [CategoryController::class, 'store']);
 
-Route::put(('/categories/{id}'), [CategoryController::class, 'update']);
+Route::put('categories/{id}', [CategoryController::class, 'update']);
 
-Route::get(('categories/{id}'), [CategoryController::class, 'show']);
+Route::get('categories/{id}', [CategoryController::class, 'show']);

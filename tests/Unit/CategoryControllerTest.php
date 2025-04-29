@@ -14,8 +14,12 @@ class CategoryControllerTest extends TestCase
 
     public function test_return_ok_when_accessing_root()
     {
-        $response = $this->get('/api/categories');
+        $response = $this->get('/api/categories/');
+
+        dd($response);
+        
         $response->assertStatus(200);
+
     }
 
     public function test_return_error_when_posting_without_name()

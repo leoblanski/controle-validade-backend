@@ -48,13 +48,13 @@ services:
       - laravel
 
   mysql_test:
-    container_name: rw-mysql-test
+    container_name: cv-mysql-test
     image: mysql:8.0
     environment:
-      MYSQL_DATABASE: rw_cv_test
-      MYSQL_ROOT_PASSWORD: rw_pw
-      MYSQL_PASSWORD: rw_pw
-      MYSQL_USER: rw_user
+      MYSQL_DATABASE: cv_test
+      MYSQL_ROOT_PASSWORD: cv_pw
+      MYSQL_PASSWORD: cv_pw
+      MYSQL_USER: cv_user
     ports:
       - "3307:3306"
     volumes:
