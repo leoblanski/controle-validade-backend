@@ -61,4 +61,4 @@ class CategoryControllerTest extends TestCase
 
         $response->assertStatus(404);
     }
-  }
+}
