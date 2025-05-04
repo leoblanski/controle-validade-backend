@@ -15,6 +15,7 @@ class CategoryControllerTest extends TestCase
     public function test_return_ok_when_accessing_root()
     {
         $response = $this->get('/api/categories');
+       
         $response->assertStatus(200);
     }
 
@@ -27,9 +28,14 @@ class CategoryControllerTest extends TestCase
 
     public function test_return_ok_when_posting_with_name()
     {
+
+ 
         $response = $this->post('/api/categories', [
+            
             'name' => 'Test Category',
         ]);
+
+
 
         $category = Category::where('name', 'Test Category')->first();
 
@@ -61,4 +67,30 @@ class CategoryControllerTest extends TestCase
 
         $response->assertStatus(404);
     }
+
+    public function test_return_ok_when_updating_category_successfully()
+    {
+ 
+    $category = Category::create([
+        'name' => 'Categoria Antiga',
+        'description' => 'Descrição antiga',
+    ]);
+
+
+    $response = $this->put("/api/categories/{$category->id}", [
+        'name' => 'Categoria Atualizada',
+        'description' => 'Descrição atualizada',
+    ]);
+
+
+    $updatedCategory = Category::find($category->id);
+
+
+    $this->assertEquals('Categoria Atualizada', $updatedCategory->name);
+    $this->assertEquals('Descrição atualizada', $updatedCategory->description);
+
+
+    $response->assertStatus(200);
+    }
+
 }
